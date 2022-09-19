@@ -12,11 +12,14 @@ public class OrderApp {
     public static void main(String[] args) {
         Long memberId = 1L;
         Member member = new Member(memberId, "memberA", Grade.VIP);
-        MemberService memberService = new MemberServiceImpl();
+
+        AppConfig appConfig = new AppConfig();
+
+        MemberService memberService = appConfig.memberService();
 
         memberService.join(member);
 
-        OrderService orderService = new OrderServiceImpl();
+        OrderService orderService = appConfig.orderService();
         
         Order order = orderService.createOrder(memberId, "ItemA", 10000);
 
